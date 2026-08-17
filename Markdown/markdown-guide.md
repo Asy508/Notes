@@ -228,3 +228,48 @@ From github-commands.md, go back to README.md:
 ```
 `..` means: 
 `Go up one folder`
+
+### Link to a File in Another Folder
+Example:
+```
+server-notes/
+├── README.md
+├── Git/
+│   └── github-commands.md
+└── Cloudflare/
+    └── cloudflared-tunnel.md
+```
+From `Git/github-commands.md`:
+```
+[Cloudflare Tunnel](../Cloudflare/cloudflared-tunnel.md)
+```
+Explanation:
+```
+Git/
+└── github-commands.md
+        │
+        └── ../          ← go back to server-notes
+                         │
+                         └── Cloudflare/
+                             └── cloudflared-tunnel.md
+```
+
+### Link to an Image
+Example:
+```
+server-notes/
+├── README.md
+└── images/
+    └── server-diagram.png
+```
+From `README.md`:
+```
+![Server Diagram](images/server-diagram.png)
+```
+
+### Link to an Image Instead of Displaying It
+Use normal link:
+```
+[View Server Diagram](images/server-diagram.png)
+```
+
