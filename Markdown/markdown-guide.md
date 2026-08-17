@@ -180,7 +180,6 @@ Use a code block with `text`.
 
 ### Markdown
 
-````markdown
 ```text
 server-notes/
 ├── README.md
