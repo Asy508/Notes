@@ -60,11 +60,11 @@ cd /tmp
 wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
 ```
 * Install:
-```Linux
+```linux
 dpkg -i cloudflared-linux-amd64.deb
 ```Linux
 * Check:
-```Linux
+```bash
 cloudflared --version
 ```
 
