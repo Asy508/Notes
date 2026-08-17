@@ -62,7 +62,7 @@ wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudfla
 * Install:
 ```linux
 dpkg -i cloudflared-linux-amd64.deb
-```Linux
+```
 * Check:
 ```bash
 cloudflared --version
