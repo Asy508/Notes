@@ -195,3 +195,37 @@ server-notes/
 └── MQTT/
     └── mqtt.md
 ```
+
+# 9. Markdown Links and Folder Access
+
+### Link to a File in the Same Folder
+
+Example structure:
+
+```text
+server-notes/
+├── README.md
+└── Git/
+    ├── github-commands.md
+    └── markdown-syntax.md
+```
+From github-commands.md, link to markdown-syntax.md:
+```
+[Markdown Guide](markdown-syntax.md)
+```
+
+### Link to a File in a Parent Folder
+-Use ../ to go up one folder.
+-Example:
+```
+server-notes/
+├── README.md
+└── Git/
+    └── github-commands.md
+```
+From github-commands.md, go back to README.md:
+```
+[Home](../README.md)
+```
+`..` means: 
+`Go up one folder`
