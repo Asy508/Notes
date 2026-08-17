@@ -12,3 +12,7 @@
 
 - [Nginx](Linux/nginx.md)
 - [WordPress](Linux/wordpress.md)
+
+## PM2
+
+- [PM2 command](PM2/pm2.md)
