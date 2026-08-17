@@ -1,12 +1,12 @@
 # Server Notes
 
+## GitHub
+
+- [Github command](GitHub/gitCommand.md)
+
 ## WSL
 
 - [WSL + Cloudflare Tunnel](WSL/cloudflare-tunnel.md)
-
-## Cloudflare
-
-- [Named Tunnel](Cloudflare/named-tunnel.md)
 
 ## Linux
 
