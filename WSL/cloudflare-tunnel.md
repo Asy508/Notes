@@ -22,7 +22,7 @@ wsl
 * Output:
 ```
 root@PC:~#
-```Linux
+```
 * Now, we're inside Linux
 
 ## 3. Create Simple website
