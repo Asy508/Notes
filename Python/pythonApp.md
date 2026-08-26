@@ -15,10 +15,9 @@ Copy the code below into a file named **`cli_app.py`** in your project folder.
 
 ```python
 #!/usr/bin/env python3
-"""
 A CLI tool that processes an input string with optional repetition,
 case conversion, and file output.
-"""
+```
 ```
 import argparse
 import sys
@@ -90,6 +89,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
 ## 2. Execution Commands (Copy & Paste)
 
 Run these commands from your terminal in the same folder where cli_app.py is saved.
