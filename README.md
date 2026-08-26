@@ -26,4 +26,4 @@
 
 ## SQL
 
--[SQL command](SQL/SQL.md)
+- [SQL command](SQL/SQL.md)
