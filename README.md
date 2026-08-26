@@ -30,4 +30,4 @@
 
 ## PyQt6
 
-- [PyQt6 Application MVC Syntax and Structure](PyQt6/PyQt6 Application MVC Syntax and Structure.md)
+- [PyQt6 Application MVC Syntax and Structure](PyQt6/PyQt6.md)
