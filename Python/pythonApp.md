@@ -105,4 +105,90 @@ python cli_app.py
 Expected output:
 ```
 usage: cli_app.py [-h] [-o OUTPUT] [-v] [-r REPEAT] [-u] input
+
+Process a string with optional flags.
+
+positional arguments:
+  input                 The text string to process.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        Save output to a file (otherwise prints to screen).
+  -v, --verbose         Print debug info to stderr.
+  -r REPEAT, --repeat REPEAT
+                        Repeat the input N times (default: 1).
+  -u, --uppercase       Convert text to ALL CAPS.
+```
+
+### 🔹 Command 2: Run WITH only the required argument
+
+```
+python cli_app.py "Hello World"
+```
+
+### 🔹 Command 3: Run with optional flags (repeat & uppercase)
+```
+python cli_app.py "Python" --repeat 3 --uppercase
+```
+Expected output:
+
+```text
+PYTHON PYTHON PYTHON 
+```
+### 🔹 Command 4: Run with all flags, including verbose and file output
+
+```bash
+python cli_app.py "Data" -r 2 -u -v -o result.txt
+```
+Expected output (printed to stderr, visible in terminal):
+
+```text
+DEBUG: input = Data
+DEBUG: repeat = 2
+DEBUG: uppercase = True
+INFO: Saved to result.txt
+```
+(Nothing is printed to stdout because we used -o)
+
+Now check the file:
+
+```bash
+cat result.txt
+```
+Output:
+
+```text
+DATA DATA 
+```
+### 🔹 Command 5: Using short options (same as above, shorter)
+```bash
+python cli_app.py "CLI" -r 4 -u -v -o output.txt
+```
+
+## 3. Quick Reference – All Commands at a Glance
+Copy and run these one by one to test everything:
+
+```bash
+# No arguments (shows help)
+python cli_app.py
+
+# Required only
+python cli_app.py "Hello"
+
+# With repeats
+python cli_app.py "Hi" -r 5
+
+# Uppercase
+python cli_app.py "lower" -u
+
+# Repeat + uppercase + verbose (print to screen)
+python cli_app.py "Mix" -r 3 -u -v
+
+# Save to file (silent)
+python cli_app.py "Secret" -o my_output.txt
+
+# Save to file with verbose (see debug + save)
+python cli_app.py "Secret" -o my_output.txt -v
+
 ```
