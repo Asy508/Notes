@@ -88,3 +88,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+## 2. Execution Commands (Copy & Paste)
+
+Run these commands from your terminal in the same folder where cli_app.py is saved.
+
+### 🔹 Command 1: Run WITHOUT any arguments
+
+The script detects zero arguments and automatically prints the help menu.
+
+---
+python cli_app.py
+---
+
+Expected output:
+---
+usage: cli_app.py [-h] [-o OUTPUT] [-v] [-r REPEAT] [-u] input
+---
