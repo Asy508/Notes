@@ -1,5 +1,5 @@
 # Laravel Core
 
 
-- [Command Artisan](Laravel/Core/Command/command-notes.md)
-- [Example](Laravel/Core/Command/example-notes.md)
+- [Command Artisan](Command/command-notes.md)
+- [Example](Example/example-notes.md)
