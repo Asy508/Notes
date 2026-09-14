@@ -42,6 +42,6 @@ yes
 - [Livewire v3](Laravel/Livewire/livewire-notes.md)
 - [Blade Templates](Laravel/Blade/blade-notes.md)
 
-## WordPress
+## Wordpress
 
-- [Getting Start](WordPress/wordpress-notes.md)
+- [Getting Start](Wordpress/wordpress-notes.md)
