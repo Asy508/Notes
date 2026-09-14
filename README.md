@@ -31,7 +31,7 @@
 ## PyQt6
 
 - [PyQt6 Application MVC Syntax and Structure](PyQt6/PyQt6.md)
-
+yes
 ## Python
 
 - [Python Application](Python/pythonApp.md)
@@ -41,3 +41,7 @@
 - [Laravel Core](Laravel/Core/core-notes.md)
 - [Livewire v3](Laravel/Livewire/livewire-notes.md)
 - [Blade Templates](Laravel/Blade/blade-notes.md)
+
+## WordPress
+
+- [Getting Start](WordPress/wordpress-notes.md)
