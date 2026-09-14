@@ -180,6 +180,161 @@ pm2 delete cloudflare-tunnel
 
 ---
 
+# Example 5: Laravel Queue Worker
+
+This guide outlines the production architecture and maintenance commands for offl
+
+---
+
+## 1. Architectural Strategy
+* **The Problem (Before):** Synchronous file parsing causes requests to hang (400ms - 30,000ms+). This triggers **HTTP 500 (Timeouts)** on the server and **HTTP 429 (Too Many Requests)** on Cloudflare due to client retry loops.
+* **The Solution (After):** The client uploads the file payload, the controller saves it to a temporary path, dispatches an asynchronous job row to the database checklist, and immediately returns an **HTTP 200 OK** in **~3.6 ms**. The active network socket closes instantly, and **PM2** handles the processing silently in the background.
+
+---
+
+## 2. Infrastructure Prerequisites
+
+### Environment Configuration (`.env`)
+Instruct Laravel to utilize your database as the temporary holding area map instead of executing synchronously:
+```env
+QUEUE_CONNECTION=database
+```
+
+### Database Migration
+Generate the necessary system schema tables required by Laravel to track pending background tasks:
+```bash
+php artisan queue:table
+php artisan migrate
+```
+
+---
+
+## 3. Core PM2 Control Commands
+
+Manage your Laravel queue daemon using the same commands alongside your Python/Node applications:
+
+### Start the Worker Daemon
+Launches the long-running worker stream engine under your active user profile:
+```bash
+pm2 start "php /var/www/support/artisan queue:work --sleep=3 --tries=3" --name "laravel-worker"
+```
+
+### Persist Across System Reboots
+Saves the running dashboard process registry list so it restarts automatically if the operating system reboots:
+```bash
+pm2 save
+```
+
+### Live Status Monitoring
+View process states, memory footprints, and resource usage:
+```bash
+pm2 list
+# Or use the visual terminal metrics dashboard:
+pm2 monit
+```
+
+### Tail Live Process Logs
+Track backend queue durations, print success outputs, or catch syntax runtime failures instantly:
+```bash
+pm2 logs laravel-worker
+```
+
+---
+
+## 4. Operational Maintenance & Golden Rules
+
+### ⚠️ Golden Rule 1: Restart After Every Deployment
+Because PM2 keeps your Laravel job logic permanently loaded into the server's RAM for optimal execution speed, **you must restart the PM2 worker whenever you update or modify your background Job files** (`.php`). If you skip this, the worker will run old cached code:
+```bash
+pm2 restart laravel-worker
+```
+
+---
+
+## 5. Housekeeping & Troubleshooting
+
+### Flush Failed Test Backlogs
+If jobs fail during staging (e.g., due to file locking issues), flush out the database history queue logs to start with a clean tracker:
+```bash
+php artisan queue:flush
+```
+
+### Scaling Up (Adding More Queues)
+By default, **you do not need another worker process** for new distinct job scripts (e.g., sending notification alerts, report updates). Laravel handles multiple classes under the same generic database list loop. Your existing worker will execute them sequentially automatically.
+
+## 6. How to Create and Dispatch a Job (Template: MyJob)
+
+### Step 1: Generate the Job Class via Terminal
+Run the following artisan command inside your project directory to create a fresh, clean job skeleton file:
+```bash
+php artisan make:job MyJob
+```
+*This automatically generates a new file located at `app/Jobs/MyJob.php`.*
+
+### Step 2: Write the Job Logic (`app/Jobs/MyJob.php`)
+Open the generated file. Pass any variables your task needs (like a user ID, email address, or text string) into the constructor, and write the heavy background task inside the `handle()` method:
+
+```php
+namespace App\Jobs;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
+
+class MyJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    // Define properties to hold data passed to the job
+    protected \$inputData;
+
+    /**
+     * 1. The Constructor: Accept data variables when the job is born.
+     */
+    public function __construct(\$inputData)
+    {
+        this->inputData = inputData;
+    }
+
+    /**
+     * 2. The Handle Method: PM2 runs this code silently in the background.
+     */
+    public function handle(): void
+    {
+        // Example background work (e.g., calling an external API, sending emails, processing data)
+        Log::info("MyJob started processing data: " . \$this->inputData);
+
+        // Your heavy, time-consuming code goes here...
+        sleep(5); 
+
+        Log::info("MyJob successfully completed!");
+    }
+}
+```
+
+### Step 3: Dispatch the Job from a Route or Controller (`routes/api.php`)
+Import the `MyJob` namespace at the top of your route or controller file, then trigger it asynchronously using the static `dispatch()` method. 
+
+```php
+use App\Jobs\MyJob;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::post('/run-generic-task', function (Request \(request) {\)dataToSend = "Sample Payload Data String";
+
+    // This hands off the task to the database checklist queue instantly!
+    MyJob::dispatch(\$dataToSend);
+
+    // The server responds to the user right away in ~3ms without waiting for the 5-second sleep
+    return response()->json([
+        'message' => 'The request was received and queued for background processing.'
+    ], 200);
+});
+```
+
 # Understanding `--`
 
 For example:
