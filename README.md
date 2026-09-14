@@ -35,3 +35,9 @@
 ## Python
 
 - [Python Application](Python/pythonApp.md)
+
+## Laravel
+
+- [Laravel Core](Laravel/Core/core-notes.md)
+- [Livewire v3](Laravel/Livewire/livewire-notes.md)
+- [Blade Templates](Laravel/Blade/blade-notes.md)
