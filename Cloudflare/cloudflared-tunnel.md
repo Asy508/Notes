@@ -339,6 +339,10 @@ If the network has problems with QUIC, use HTTP/2:
 cloudflared tunnel --protocol http2 run home-server
 ```
 
+If the different config file
+```
+cloudflared tunnel --config ~/.cloudflared/custom-config.yml run custom-tunnel
+```
 ---
 
 # 10. Test the Custom Domain
