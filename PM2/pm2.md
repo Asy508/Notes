@@ -147,7 +147,12 @@ Start it using PM2:
 ```bash
 pm2 start cloudflared --name cloudflare-tunnel -- tunnel --protocol http2 run home-server
 ```
-
+or cloudflared with custom config file
+```bash
+pm2 start /usr/local/bin/cloudflared --name custom-tunnel -- \
+  tunnel --config /home/armscloud/.cloudflared/custom-config.yml run custom-tunnel
+  
+```
 Check:
 
 ```bash
