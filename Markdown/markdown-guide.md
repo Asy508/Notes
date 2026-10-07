@@ -272,4 +272,26 @@ Use normal link:
 ```
 [View Server Diagram](images/server-diagram.png)
 ```
+# 10. Text Formatting
+### Bold
+Example
+```
+**bold text**
+```
+or 
+```
+__bold text__
+```
+Output:
+- **bold text**
+- __bold text__
 
+  ### Highlight
+  Example
+  ```
+  <mark>highlight text</mark>
+  ```
+  Output
+  - <mark>highlight text</mark>
+
+  
